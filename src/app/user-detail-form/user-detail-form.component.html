@@ -1,0 +1,17 @@
+
+
+<form [formGroup]="userDetailsForm" (ngSubmit)="onFormSubmit()">
+  <div class="form-group">
+    <label>User Chat Profile</label>
+    <label for="displayName">Display Name</label>
+    <input formControlName="displayName" type="text" class="form-control" id="name" placeholder="Alien">
+    <small *ngIf="userDetailsForm.get('displayName').hasError('required')" class="form-text text-danger">Display name is required.</small>
+  </div>
+  <div class="form-group">
+    <label for="email">Email id</label>
+    <input formControlName="email" type="email" class="form-control" id="email" placeholder="alien@abc.com">
+    <small *ngIf="userDetailsForm.get('email').hasError('required')" class="form-text text-danger">Email is required.</small>
+    <small *ngIf="userDetailsForm.get('email').hasError('email')" class="form-text text-danger">Email is Invalid.</small>
+  </div>
+  <button type="submit" [disabled]="loader || userDetailsForm.invalid" class="btn btn-primary">{{loader?'Joining':'Join Group'}}</button>
+</form>
